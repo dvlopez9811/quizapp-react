@@ -1,19 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    startTime: new Date().getTime,
-    quizTime: 0,
     gameStatus: 'playing',
-    gameResult: 'You won yei'
+    gameResult: 'Nothing yet'
 }
 
 const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        setTime(state, action) {
-
-        },
+ 
         finishGame(state, action) {
             const {correctAnswers} = action.payload
             if(correctAnswers > 6)
@@ -29,4 +25,4 @@ const gameSlice = createSlice({
 
 export default gameSlice.reducer
 
-export const {setTime, finishGame, resetGame} = gameSlice.actions
+export const {finishGame, resetGame} = gameSlice.actions

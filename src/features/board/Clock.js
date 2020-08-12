@@ -4,8 +4,11 @@ class Clock extends React.Component {
 
  constructor(props){
      super(props);
-     this.state = { time: Math.floor(((
-       new Date().getTime() - this.props.startTime)/1000)).toLocaleString() }
+     this.state ={ 
+       startTime: (new Date().getTime()),
+       timeElapsed: ( (new Date().getTime()) - parseInt(new Date().getTime(),10) ).toLocaleString()
+    }
+
  }
 
 
@@ -21,16 +24,25 @@ class Clock extends React.Component {
   }
 
   tick() {
-    this.setState({
-      time: Math.floor(((
-        new Date().getTime() - this.props.startTime)/1000)).toLocaleString()
-    });
+    if(this.props.status === 'playing'){
+      this.setState({
+        timeElapsed: Math.floor(( ((new Date().getTime()) - this.state.startTime)/1000 )).toLocaleString()  
+      });
+    }
+    /*
+    else{
+      clearInterval(this.intervalID);
+    }
+    */
+   
+    
   }
  render(){
      return (
          <h2>
-             Time: {this.state.time} sec.
+             Time: {this.state.timeElapsed} sec.
          </h2>
+         
      )
  }
 

@@ -5,7 +5,6 @@ import  Clock  from './Clock'
 import {resetGame} from '../game/gameSlice'
 import { resetQuiz } from '../questions/questionsSlice'
 
-const startTime = new Date().getTime();
 
 export const BoardPanel = () => {
 
@@ -50,7 +49,7 @@ return(
         <div>
             <h3>Question # {currentQuestionId}/10</h3>
             <h2>Correct answers: {correctAnswers}</h2>
-            <Clock startTime={ startTime }/>
+            <Clock status={gameStatus} />
             <div>{passOrFailContent}</div>
             <div>{tryAgainButton}</div>
 

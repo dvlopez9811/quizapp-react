@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectQuestionById, fetchQuestions, nextQuestion} from '../questions/questionsSlice'
+import { selectQuestionById, fetchQuestions, nextQuestion, resetQuiz} from '../questions/questionsSlice'
 
-import {finishGame} from '../game/gameSlice'
+import {finishGame, resetGame} from '../game/gameSlice'
 
 export const QuizPage = () => {
 
@@ -51,6 +51,10 @@ export const QuizPage = () => {
         }    }
 
 
+        const onQuitButtonClicked = () => {
+            dispatch(resetQuiz());
+            dispatch(resetGame());
+        }
 
     return (
         <div>
@@ -66,7 +70,7 @@ export const QuizPage = () => {
             False</button>
 
         </div>
-        <Link to={`/`} className="button" >Quit</Link>
+        <Link to={`/`} className="button" onClick={onQuitButtonClicked}>Quit</Link>
 
         </div>   
          )
