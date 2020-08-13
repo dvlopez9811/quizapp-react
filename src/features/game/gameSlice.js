@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     gameStatus: 'playing',
-    gameResult: 'Nothing yet'
+    gameResult: 'Nothing yet',
+    category: 'general'
 }
 
 const gameSlice = createSlice({
@@ -19,10 +20,14 @@ const gameSlice = createSlice({
 
             state.gameStatus = 'finished'
         },
-        resetGame: state => initialState
+        resetGame: state => initialState,
+        setCategory (state,action){
+            const {category} = action.payload 
+            state.category = category
+        }
     }
 })
 
 export default gameSlice.reducer
 
-export const {finishGame, resetGame} = gameSlice.actions
+export const {finishGame, resetGame, setCategory} = gameSlice.actions

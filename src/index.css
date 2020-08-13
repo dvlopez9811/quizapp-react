@@ -470,6 +470,8 @@ ul ul a {
 .flexbox-container {
   display: flex;
   flex-direction: row;
+  position: relative;
+  z-index: -1;
 }
 
 .title {
@@ -490,6 +492,8 @@ ul ul a {
   margin-left: 10px;
   width: 400px;
   margin-bottom: 10px;
+  box-sizing: border-box;
+
 }
 
 .quiz-page {
@@ -499,5 +503,13 @@ ul ul a {
   border-style: inset;
   border-radius: 10px;
   max-width: 900px;
+  box-sizing: border-box;
 
+
+}
+
+@media(max-width: 768px){
+  #navigation ul a:link {
+      width: 60px;
+  }
 }

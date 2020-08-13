@@ -29,11 +29,11 @@ class Clock extends React.Component {
         timeElapsed: Math.floor(( ((new Date().getTime()) - this.state.startTime)/1000 )).toLocaleString()  
       });
     }
-    /*
+    
     else{
-      clearInterval(this.intervalID);
+      this.setState({startTime : (new Date().getTime())})
     }
-    */
+    
    
     
   }

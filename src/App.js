@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 
 import logo from './logo.svg';
-import { GameStart } from './features/game/GameStart'
+import reactlogo from './reactlogo.png'
+import { GameStartForm } from './features/game/GameStartForm'
 import './App.css';
 import { GamePage } from './features/game/GamePage';
 
@@ -20,11 +21,13 @@ function App() {
     <Route exact path="/" 
          render={() => (
            <React.Fragment>
-        <img src={logo} className="App-logo" alt="logo" />
+             <img src={reactlogo} className="App-logo" alt="logo" />
+             <img src={logo} className="App-logo" alt="logo" />
+
         <div className="title">
           Quiz Application Training React+Redux.
         </div>
-        <GameStart/>
+        <GameStartForm/>
         </React.Fragment>
          )}/>
 

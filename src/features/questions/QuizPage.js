@@ -8,11 +8,11 @@ import {finishGame, resetGame} from '../game/gameSlice'
 export const QuizPage = () => {
 
     const dispatch = useDispatch();
-
+    const category = useSelector(state => state.game.category)
 
     useEffect(() => {
-        dispatch(fetchQuestions());
-    }, [dispatch])
+        dispatch(fetchQuestions(category));
+    }, [category , dispatch])
 
     let content;
     const requestStatus = useSelector(state => state.questions.status)

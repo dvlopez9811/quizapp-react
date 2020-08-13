@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { URL_GENERAL_CULTURE_QUIZ } from '../../constants/webConstants';
+import { URL_GENERAL_CULTURE_QUIZ, URL_MUSIC_QUIZ, URL_FILMS_QUIZ, URL_GEOGRAPHY_QUIZ } from '../../constants/webConstants';
 import { client } from '../webServices/client';
 
 const initialState = 
@@ -12,10 +12,24 @@ const initialState =
         error: null
 }
 
-
-export const fetchQuestions = createAsyncThunk("questions/fetchQuestions",async() => {
-    const response = await client.get(URL_GENERAL_CULTURE_QUIZ);
-    return response.results
+export const fetchQuestions = createAsyncThunk("questions/fetchQuestions",async(category) => {
+  let apiUrl;
+  switch(category){
+    case "geography":
+      apiUrl= URL_GEOGRAPHY_QUIZ;
+      break;
+    case "music":
+      apiUrl = URL_MUSIC_QUIZ;
+      break;
+    case "films":
+      apiUrl = URL_FILMS_QUIZ;
+      break;
+    default:
+      apiUrl= URL_GENERAL_CULTURE_QUIZ;
+      break;
+  }
+  const response = await client.get(apiUrl);
+  return response.results
 })
 
 const questionsSlice = createSlice({
@@ -43,7 +57,7 @@ const questionsSlice = createSlice({
           },
           [fetchQuestions.fulfilled]: (state, action) => {
             state.status = "succeeded";
-            state.questions = state.questions.concat(action.payload)
+            state.questions = action.payload
             let contador = 1;
             state.questions.forEach(element => {
               element.question_id = contador++
